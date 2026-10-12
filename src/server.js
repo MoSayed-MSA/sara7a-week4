@@ -13,5 +13,5 @@ async function serverShutdown() {
     process.exit(0);
 }
 
-server.on('SIGINT', serverShutdown);
-server.on('SIGTERM', serverShutdown);
+process.on('SIGINT', serverShutdown);
+process.on('SIGTERM', serverShutdown);

@@ -59,7 +59,7 @@ export async function forgetPassword(req, res, next) {
         const { email, code, newPassword } = validateBody(forgetPassDto, req.body);
 
         await authService.forgetPassword(email, code, newPassword);
-        res.sendStatus(204);
+        successResponse(res, 200, "Password reset successfully");
     } catch (error) {
         next(error);
     }

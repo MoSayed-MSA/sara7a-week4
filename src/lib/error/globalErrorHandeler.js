@@ -2,8 +2,11 @@ import { logger } from '../../pkg/logger/logger.js';
 import dotenv from 'dotenv';
 
 // global error handler
-export const globalErrorHandler = (err, req, res, next) => {
-    logger.error(err.message);
+export const globalErrorHandler = (err, req, res, _next) => {
+    logger.error(err.message, {
+        stack: err.stack,
+        correlationId: req.correlationId,
+    });
     if (err.isOperational === true) {
         return res.status(err.statusCode || 400).json({
             status: "error",
